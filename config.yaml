@@ -1,0 +1,54 @@
+# 配置文件
+# 目标用户配置
+targets:
+  - qq_number: "123456789"  # 目标QQ号
+    bilibili_uid: "12345678"  # 对应的B站UID
+    name: "用户1"  # 备注名称
+
+# 检查配置
+check_config:
+  check_interval_hours: 6  # 检查间隔（小时）
+  inactive_days_threshold: 7  # 无活动天数阈值（超过此天数将发送邮件）
+  
+# 邮件配置
+email:
+  smtp_server: "smtp.qq.com"  # SMTP服务器地址
+  smtp_port: 587  # SMTP端口
+  sender_email: "your_email@qq.com"  # 发送者邮箱
+  sender_password: "your_app_password"  # 邮箱授权码（不是QQ密码）
+  receiver_email: "receiver@example.com"  # 接收者邮箱
+  subject_prefix: "[生命状态监控]"  # 邮件主题前缀
+  use_ssl: false  # 如果使用 SMTPS（端口465） 则设为 true
+
+# 数据库配置
+database:
+  path: "monitor.db"  # 数据库文件路径
+
+# 日志配置
+logging:
+  level: "INFO"  # 日志级别: DEBUG, INFO, WARNING, ERROR
+  file: "monitor.log"  # 日志文件路径
+  max_bytes: 10485760  # 日志文件最大大小（10MB）
+  backup_count: 5  # 日志文件备份数量
+
+# 控制面板配置
+control_panel:
+  enabled: true          # 是否启用控制面板
+  host: "127.0.0.1"      # 监听地址
+  port: 8080             # 监听端口
+  auth_token: "change_me_token"  # Bearer Token，留空则不认证
+  enable_https: false    # 是否启用 HTTPS
+  certfile: ""           # HTTPS 证书路径（启用 HTTPS 时必填）
+  keyfile: ""            # HTTPS 私钥路径（启用 HTTPS 时必填）
+
+# 时间同步配置
+time_sync:
+  servers:
+    - "ntp.aliyun.com"
+    - "ntp.tencent.com"
+    - "pool.ntp.org"
+  timeout: 3.0        # 单个 NTP 请求超时（秒）
+  max_skew_sec: 2.0   # 允许的本地时间偏差（秒）
+  min_success: 2      # 至少成功的服务器数量
+
+
